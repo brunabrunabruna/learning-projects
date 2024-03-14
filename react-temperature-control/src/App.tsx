@@ -39,7 +39,7 @@ const TemperatureControl = () => {
   const [temperature, setTemperature] = useState(15);
 
   const [bgColor, setBgColor] = useState("");
-  const [softerBgColor, setSofterBgColor] = "";
+  const [softerBgColor, setSofterBgColor] = useState("");
   //when temperature is changed, useEffect runs and sets a new bg color
   useEffect(() => {
     //defaults to the first element in the colosArray
@@ -66,20 +66,14 @@ const TemperatureControl = () => {
 
     //sets the rgb channels for new bg color
     setBgColor(`rgb(${newColor[0]},${newColor[1]},${newColor[2]})`);
-    // setSofterBgColor(
-    //   `rgb(${newColor[0]},${newColor[1]},${(newColor[2], 0.5)})`
-    // );
+    setSofterBgColor(`rgb(${newColor[0]},${newColor[1]},${newColor[2]},0.2)`);
   }, [temperature]);
 
   return (
-    <div className="page-container" style={{ backgroundColor: bgColor }}>
+    <div className="page-container" style={{ backgroundColor: softerBgColor }}>
       <div className="app-container">
         {/* on the style property, the bg color is set, and updated when the temperature changes */}
-        <div
-          className="temp-container"
-          style={{ backgroundColor: softerBgColor }}
-        >
-          {/* {temperature > 20 && temperature < 35 ? ( */}
+        <div className="temp-container" style={{ backgroundColor: bgColor }}>
           {temperature > 20 && temperature < 36 ? (
             <p className="temperature">{temperature}</p>
           ) : (
