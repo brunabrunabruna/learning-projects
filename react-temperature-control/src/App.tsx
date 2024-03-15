@@ -33,7 +33,7 @@ const maxScaleTemperature = 40;
 const scale = maxScaleTemperature - minScaleTemperature;
 
 //variable that defines the intervals between temperatures. stepSize = 2, temperatures will be 0,2,4...
-const stepSize = 1;
+const stepSize = 5;
 
 const TemperatureControl = () => {
   const [temperature, setTemperature] = useState(15);
@@ -69,28 +69,44 @@ const TemperatureControl = () => {
     setSofterBgColor(`rgb(${newColor[0]},${newColor[1]},${newColor[2]},0.2)`);
   }, [temperature]);
 
+  const renderTemperature = () => {
+    if (temperature === 50) {
+      return <p>too hot!🥵</p>;
+    } else if (temperature === -10) {
+      return <p>too cold!🥶</p>;
+    } else return temperature;
+  };
+
   return (
     <div className="page-container" style={{ backgroundColor: softerBgColor }}>
       <div className="app-container">
+        <h1 className="app-title">Pick your temperature:</h1>
+
         {/* on the style property, the bg color is set, and updated when the temperature changes */}
         <div className="temp-container" style={{ backgroundColor: bgColor }}>
           {temperature > 20 && temperature < 36 ? (
-            <p className="temperature">{temperature}</p>
+            <p className="temperature">{renderTemperature()}</p>
           ) : (
-            <p className="temperature temperature-white">{temperature}</p>
+            <p className="temperature temperature-white">
+              {renderTemperature()}
+            </p>
           )}
         </div>
         <div className="buttons">
           <button
             onClick={() => {
-              setTemperature((previousTemp) => previousTemp - stepSize);
+              setTemperature((previousTemp) =>
+                previousTemp <= -10 ? -10 : previousTemp - stepSize
+              );
             }}
           >
             -
           </button>
           <button
             onClick={() => {
-              setTemperature((previousTemp) => previousTemp + stepSize);
+              setTemperature((previousTemp) =>
+                previousTemp >= 50 ? 50 : previousTemp + stepSize
+              );
             }}
           >
             +
