@@ -83,7 +83,13 @@ const TemperatureControl = () => {
         <h1 className="app-title">Pick your temperature:</h1>
 
         {/* on the style property, the bg color is set, and updated when the temperature changes */}
-        <div className="temp-container" style={{ backgroundColor: bgColor }}>
+        <div
+          className="temp-container"
+          style={{
+            backgroundColor: bgColor,
+            boxShadow: `  0 0 20px 20px ${softerBgColor} `,
+          }}
+        >
           {temperature > 20 && temperature < 36 ? (
             <p className="temperature">{renderTemperature()}</p>
           ) : (

@@ -17,7 +17,7 @@ body {
 .app-title {
   text-align: center;
   font-size: 2rem;
-  color: white;
+  color: rgb(100, 100, 100);
   margin-bottom: 2rem;
 }
 
@@ -27,7 +27,7 @@ body {
   justify-content: center;
   flex-flow: column;
   margin: auto;
-  background-color: #a5a5a5;
+  background-color: #ebebeb;
   width: 300px;
   height: auto;
   padding: 3rem 1rem;
@@ -75,6 +75,8 @@ body {
   align-items: center;
   justify-content: center;
   flex-flow: column;
+
+  transition: filter 0.2s ease-out;
 }
 
 .buttons :hover {
